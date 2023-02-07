@@ -28,6 +28,6 @@ public class Troll{
      // sets the total money collected by all trolls to 0
     // DOES NOT HAVE TO EMPTY ALL INDIVIDUAL TROLL'S MONEIES
     public static void emptyTreasury(){
-
+        total = 0;
     }
 }
