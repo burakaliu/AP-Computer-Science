@@ -1,8 +1,8 @@
 public class Matrix {
-    double graph[][];
+    
 
     Matrix (int a, int b){
-
+        public double graph[][] = new double[a][b];
     } //The constructor creates a Matrix. The first parameter is the number of rows. The second parameter is the number of columns.
 
  
