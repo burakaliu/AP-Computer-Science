@@ -119,10 +119,10 @@ public class Matrix {
             throw new MatrixException("One or both matrices are null.");
         }
         
-        int m1 = matrix1.getRows();
-        int n1 = matrix1.getColumns();
-        int m2 = matrix2.getRows();
-        int n2 = matrix2.getColumns();
+        int m1 = matrix1.numRows;
+        int n1 = matrix1.numCols;
+        int m2 = matrix2.numRows;
+        int n2 = matrix2.numCols;
     
         if (n1 != m2) {
             throw new MatrixException("Cannot multiply matrices. Incorrect dimensions.");
@@ -133,9 +133,9 @@ public class Matrix {
             for (int j = 0; j < n2; j++) {
                 double sum = 0;
                 for (int k = 0; k < n1; k++) {
-                    sum += matrix1.getValue(i, k) * matrix2.getValue(k, j);
+                    sum += matrix1.get(i, k) * matrix2.get(k, j);
                 }
-                result.setValue(i, j, sum);
+                result.set(i, j, sum);
             }
         }
         return result;
@@ -170,9 +170,32 @@ public class Matrix {
         return result;
     }
 
-    public static void transpose (Matrix a){
+    /**
+     *  This is a static method that performs a matrix transposition on the given parameter.
+     *  It should return a new Matrix as the answer. If the parameter is null, a MatrixException should be thrown.
+     * 
+     * @param matrix The matrix to transpose
+     * @return A new Matrix object that is the transpose of the given matrix
+     * @throws MatrixException if the given matrix is null
+    */
+    public static Matrix transpose(Matrix matrix) throws MatrixException {
+        if (matrix == null) {
+            throw new MatrixException("Cannot transpose a null matrix.");
+        }
 
-    } //This is a static method that performs a matrix transposition on the given parameter. It should return a new Matrix as the answer. If the parameter is null, a MatrixException should be thrown.
+        int numRows = matrix.numRows;
+        int numCols = matrix.numCols;
+
+        Matrix transposedValues = new Matrix(numCols, numRows);
+
+        for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j < numCols; j++) {
+                transposedValues.set(j, i, matrix.get(i, j));
+            }
+        }
+
+        return transposedValues;
+    }
     //Note: Whenever an exception is thrown, make sure the error message in the exception makes some sort of sense.
     //Note: Row 0, Column 0 should refer to the upper left corner of a matrix.
 }
