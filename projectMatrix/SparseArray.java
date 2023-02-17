@@ -5,14 +5,12 @@ public class SparseArray {
 
     private int numRows;
     private int numCols;
-    private double[][] values;
     private Map<Integer, Map<Integer, Double>> sparseArray = new HashMap<>();
 
 
     public SparseArray(int numRows, int numCols) {
         this.numRows = numRows;
         this.numCols = numCols;
-        this.values = new double[numRows][numCols];
     }
 
     public void set(int row, int col, double value) throws SparseArrayException{
