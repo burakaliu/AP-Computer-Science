@@ -2,7 +2,7 @@ public class SparseMatrix {
     
     private int numRows;
     private int numCols;
-    private double[][] values;
+    private SparseArray values;
 
 
     /**
@@ -15,7 +15,7 @@ public class SparseMatrix {
     public SparseMatrix(int numRows, int numCols) {
         this.numRows = numRows;
         this.numCols = numCols;
-        this.values = new double[numRows][numCols];
+        this.values = new SparseArray(numRows, numCols);
     }
 
  
@@ -31,11 +31,11 @@ public class SparseMatrix {
      * @param value the value to set
      * @throws MatrixException if the row or column index is out of range
      */
-    public void set(int row, int col, double value) throws MatrixException {
+    public void set(int row, int col, double value) throws MatrixException, SparseArrayException{
         if (row < 0 || row >= numRows || col < 0 || col >= numCols) {
             throw new MatrixException("Index out of range.");
         }
-        values[row][col] = value;
+        values.set(row, col, value);
     }
  
 
@@ -48,11 +48,11 @@ public class SparseMatrix {
      * @return the value in the specified cell
      * @throws MatrixException if the row or column index is out of range
      */
-    public double get(int row, int col) throws MatrixException {
+    public double get(int row, int col) throws MatrixException, SparseArrayException{
         if (row < 0 || row >= numRows || col < 0 || col >= numCols) {
             throw new MatrixException("Index out of range.");
         }
-        return values[row][col];
+        return values.get(row, col);
     }
 
  
@@ -66,7 +66,7 @@ public class SparseMatrix {
      * @return the result of matrix addition
      * @throws MatrixException if either matrix is null, or the matrices cannot be added
      */
-    public static SparseMatrix add(SparseMatrix matrix1, SparseMatrix matrix2) throws MatrixException {
+    public static SparseMatrix add(SparseMatrix matrix1, SparseMatrix matrix2) throws MatrixException, SparseArrayException {
         if (matrix1 == null || matrix2 == null || matrix1.numRows != matrix2.numRows || matrix1.numCols != matrix2.numCols) {
             throw new MatrixException("Matrices cannot be added.");
         }
@@ -90,7 +90,7 @@ public class SparseMatrix {
      * @return a new matrix that is the result of the subtraction
      * @throws MatrixException if either matrix is null or if the matrices are not the same size
     */
-    public static SparseMatrix sub(SparseMatrix matrix1, SparseMatrix matrix2) throws MatrixException {
+    public static SparseMatrix sub(SparseMatrix matrix1, SparseMatrix matrix2) throws MatrixException, SparseArrayException {
         if (matrix1 == null || matrix2 == null || matrix1.numRows != matrix2.numRows || matrix1.numCols != matrix2.numCols) {
             throw new MatrixException("Cannot subtract null matrices");
         }
@@ -114,7 +114,7 @@ public class SparseMatrix {
      * @return the product of the two matrices
      * @throws MatrixException if either matrix is null or the matrices cannot be multiplied
     */
-    public static SparseMatrix mult(SparseMatrix matrix1, SparseMatrix matrix2) throws MatrixException {
+    public static SparseMatrix mult(SparseMatrix matrix1, SparseMatrix matrix2) throws MatrixException, SparseArrayException{
         if (matrix1 == null || matrix2 == null) {
             throw new MatrixException("One or both matrices are null.");
         }
@@ -151,7 +151,7 @@ public class SparseMatrix {
      * @return the product of the matrix and the scalar value
      * @throws MatrixException if the matrix parameter is null
      */
-    public static SparseMatrix mult(SparseMatrix matrix, double scalar) throws MatrixException {
+    public static SparseMatrix mult(SparseMatrix matrix, double scalar) throws MatrixException, SparseArrayException {
         if (matrix == null) {
             throw new MatrixException("Matrix is null.");
         }
@@ -178,7 +178,7 @@ public class SparseMatrix {
      * @return A new Matrix object that is the transpose of the given matrix
      * @throws MatrixException if the given matrix is null
     */
-    public static SparseMatrix transpose(SparseMatrix matrix) throws MatrixException {
+    public static SparseMatrix transpose(SparseMatrix matrix) throws MatrixException, SparseArrayException {
         if (matrix == null) {
             throw new MatrixException("Cannot transpose a null matrix.");
         }
