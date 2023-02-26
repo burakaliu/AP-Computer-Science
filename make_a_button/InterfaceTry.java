@@ -9,7 +9,7 @@ public class InterfaceTry
     public static void main(String [] args){
         Button x = new StopLight();  // POLYMORPHISM
         
-        x.push();
+        x.push("string");
         System.out.println(x.buttonState());
     }
 }

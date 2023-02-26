@@ -7,7 +7,7 @@ public class StopLight implements Button
 {
     String color = "green";
     
-    public void push(){
+    public void push( String string){
         if (color.equals("green")){
             color = "yellow";
         } else if (color.equals("yellow")){

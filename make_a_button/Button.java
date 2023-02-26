@@ -16,7 +16,7 @@ public interface Button
      * The push method is what should happen if the button is pushed.
      * The intention is that the internal state of the button should change
      */
-    public void push();
+    public void push(String string);
     
     /**
      * The buttonState method should simple return a String that somehow
